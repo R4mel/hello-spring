@@ -40,8 +40,10 @@ public class HelloController {
     2. 템플릿 엔진을 MVC 방식으로 쪼개서 렌더링된 HTML을 전달해준다.
     3. API 방식: 객체를 반환
      */
-
+    
     static class Hello {
+        private String name;
+
         public String getName() {
             return name;
         }
@@ -49,8 +51,6 @@ public class HelloController {
         public void setName(String name) {
             this.name = name;
         }
-
-        private String name;
     }
 
     /*
