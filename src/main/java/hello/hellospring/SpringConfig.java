@@ -1,7 +1,6 @@
 package hello.hellospring;
 
 import hello.hellospring.repository.MemberRepository;
-import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,13 +8,32 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
-    @Bean
-    public MemberService memberService() {
-        return new MemberService(memberRepository());
+//    private final DataSource dataSource;
+//
+//    private final EntityManager entityManager;
+//
+//    public SpringConfig(DataSource dataSource, EntityManager entityManager) {
+//        this.dataSource = dataSource;
+//        this.entityManager = entityManager;
+//    }
+
+    private MemberRepository memberRepository;
+
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
-    public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+    public MemberService memberService() {
+        return new MemberService(memberRepository);
     }
+
+//    @Bean
+//    public MemberRepository memberRepository() {
+    // 개방-폐쇄 원칙(OCP, Open-Closed Principle)
+//        return new MemoryMemberRepository();
+//        return new JdbcMemberRepository(dataSource);
+//        return new JdbcMemberRepository(dataSource);
+//        return new JpaMemberRepository(entityManager);
+//    }
 }
