@@ -17,7 +17,7 @@ public class SpringConfig {
 //        this.entityManager = entityManager;
 //    }
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     public SpringConfig(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -27,6 +27,11 @@ public class SpringConfig {
     public MemberService memberService() {
         return new MemberService(memberRepository);
     }
+
+//    @Bean
+//    public TimeTraceAop timeTraceAop() {
+//        return new TimeTraceAop();
+//    }
 
 //    @Bean
 //    public MemberRepository memberRepository() {
